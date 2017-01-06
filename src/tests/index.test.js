@@ -9,7 +9,7 @@ const exec = require('child_process').exec;
 describe('run test ', () => {
   describe('assertTrue', () => {
     it('test exclude on the CLI with include option', (done) => {
-      exec('node ./bin/wafr.js ./src/tests/solidityTests/excludeTest --exclude **Another**.sol --include **test.AnotherSomething**  --output ./src/tests/testBuild/excludeContracts.json', (execError) => { // eslint-disable-line
+      exec("node ./bin/wafr.js ./src/tests/solidityTests/excludeTest --exclude '**Another**.sol' --include '**test.AnotherSomething**'  --output ./src/tests/testBuild/excludeContracts.json", (execError) => { // eslint-disable-line
         const contractsOutput = require('./testBuild/excludeContracts.json'); // eslint-disable-line
         assert.equal(Object.keys(contractsOutput).length, 1); // including Test contract
         assert.deepEqual(Object.keys(contractsOutput), ['Something']);
@@ -19,7 +19,7 @@ describe('run test ', () => {
     });
 
     it('test exclude on the CLI', (done) => {
-      exec('node ./bin/wafr.js ./src/tests/solidityTests/excludeTest --exclude **test.**.sol --output ./src/tests/testBuild/excludeContracts2.json', (execError) => { // eslint-disable-line
+      exec("node ./bin/wafr.js ./src/tests/solidityTests/excludeTest --exclude '**test.**.sol' --output ./src/tests/testBuild/excludeContracts2.json", (execError) => { // eslint-disable-line
         const contractsOutput = require('./testBuild/excludeContracts2.json'); // eslint-disable-line
 
         assert.equal(execError, null);
